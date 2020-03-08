@@ -10,17 +10,17 @@
 4. Interpretation
 
 --- 
+^ 
+- Code String zu Token Stream
+- In späterem Abschnitt verwendet
 
 # Lexing oder Tokenizing
 ## Verwandelt einen Code-String zu eine Token-Stream
-  
 ```php
 <?php
 
-// Code-String
 $code = '<?php $a = 1 ?>';
 
-// Holen der Tokens
 $tokens = token_get_all($code);
 
 foreach ($tokens as $token) {
@@ -33,6 +33,9 @@ foreach ($tokens as $token) {
 ```
 
 ---
+^
+- Manche Zeichen sind Tokens
+- Beispiel ; : ? =
 
 # PHP-Code
 ```php
@@ -49,4 +52,124 @@ Line 1: T_WHITESPACE (' ')
 Line 1: T_LNUMBER ('1')
 Line 1: T_WHITESPACE (' ')
 Line 1: T_CLOSE_TAG ('?>')
+```
+
+---
+^
+- Ist das Skript logisch?
+- Baumartige Darstellung des Programmcodes
+
+# Parsing
+1. Grammatik Check (Validierung)
+2. Bauen des AST (Abstract Syntax Tree)
+   
+```php
+<?php
+
+$code = <<<'EOL'
+<?php 
+    $a = 1;
+EOL;
+
+print_r(ast\parse_code($code, 70));
+```
+
+---
+^
+- 132 = Statement List
+- Line 1
+
+# AST
+```php
+ast\Node Object
+(
+    [kind] => 132
+    [flags] => 0
+    [lineno] => 1
+    [children] => Array(
+       
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+    )
+)
+```
+
+---
+^
+- 517 = Assignment
+- Line 2
+
+# AST
+```php
+ast\Node Object
+(
+    [kind] => 132
+    [flags] => 0
+    [lineno] => 1
+    [children] => Array(
+        [0] => ast\Node Object(
+        [kind] => 517
+        [flags] => 0
+        [lineno] => 2
+        [children] => Array(
+
+
+
+
+
+
+
+
+            [expr] => 1
+        )
+        )
+    )
+)
+```
+
+---
+^
+- 256 = Variable
+- Line 2
+- Wert "a"
+
+# AST
+```php
+ast\Node Object
+(
+    [kind] => 132
+    [flags] => 0
+    [lineno] => 1
+    [children] => Array(
+        [0] => ast\Node Object(
+        [kind] => 517
+        [flags] => 0
+        [lineno] => 1
+        [children] => Array(
+            [var] => ast\Node Object(
+                [kind] => 256
+                [flags] => 0
+                [lineno] => 2
+                [children] => Array(
+                    [name] => a
+                )
+            )
+            [expr] => 1
+        )
+        )
+    )
+)
 ```
