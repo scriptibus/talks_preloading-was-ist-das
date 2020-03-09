@@ -1,3 +1,5 @@
+slidenumbers: true
+
 # Was ist Preloading 
 ### Und wie funktioniert das?
 
@@ -60,8 +62,9 @@ Line 1: T_CLOSE_TAG ('?>')
 - Baumartige Darstellung des Programmcodes
 
 # Parsing
-1. Grammatik Check (Validierung)
-2. Bauen des AST (Abstract Syntax Tree)
+1. Verwendet Token-Stream
+2. Grammatik Check (Validierung)
+3. Bauen des AST (Abstract Syntax Tree)
    
 ```php
 <?php
@@ -77,76 +80,16 @@ print_r(ast\parse_code($code, 70));
 ---
 ^
 - 132 = Statement List
-- Line 1
-
-# AST
-```php
-ast\Node Object
-(
-    [kind] => 132
-    [flags] => 0
-    [lineno] => 1
-    [children] => Array(
-       
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-    )
-)
-```
-
----
-^
-- 517 = Assignment
-- Line 2
-
-# AST
-```php
-ast\Node Object
-(
-    [kind] => 132
-    [flags] => 0
-    [lineno] => 1
-    [children] => Array(
-        [0] => ast\Node Object(
-        [kind] => 517
-        [flags] => 0
-        [lineno] => 2
-        [children] => Array(
-
-
-
-
-
-
-
-
-            [expr] => 1
-        )
-        )
-    )
-)
-```
-
----
-^
 - 256 = Variable
-- Line 2
+- 517 = Assignment
 - Wert "a"
 
 # AST
+
+[.code-highlight: 1-7, 22-24]
+[.code-highlight: 1-11, 20-24]
+[.code-highlight: all]
+
 ```php
 ast\Node Object
 (
@@ -155,21 +98,54 @@ ast\Node Object
     [lineno] => 1
     [children] => Array(
         [0] => ast\Node Object(
-        [kind] => 517
-        [flags] => 0
-        [lineno] => 1
-        [children] => Array(
-            [var] => ast\Node Object(
-                [kind] => 256
-                [flags] => 0
-                [lineno] => 2
-                [children] => Array(
-                    [name] => a
+            [kind] => 517
+            [flags] => 0
+            [lineno] => 1
+            [children] => Array(
+                [var] => ast\Node Object(
+                    [kind] => 256
+                    [flags] => 0
+                    [lineno] => 2
+                    [children] => Array(
+                        [name] => a
+                    )
                 )
+                [expr] => 1
             )
-            [expr] => 1
-        )
         )
     )
 )
 ```
+
+---
+
+# Compilation
+1. Verwendet AST
+2. Nimmt optimierungen vor 
+   
+    ```php
+    strlen("abc") = int(3)
+    60 * 60 * 24  = int(86400)
+    ```
+3. Generiert OPCodes
+
+---
+
+# OPCodes
+## PHP-Script
+```php
+<?php
+
+if (random_int(0,1) === 1) {
+    echo 'Hallo Welt!', PHP_EOL;
+}
+```
+
+## Command
+```sh
+$ php -dvld.active=1 -dvld.execute=0 opcodes.php
+```
+
+---
+
+![fit](opcodes.png)

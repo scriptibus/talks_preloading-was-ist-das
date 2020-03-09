@@ -1,0 +1,1 @@
+php -dvld.active=1 -dvld.execute=0 opcodes.php
