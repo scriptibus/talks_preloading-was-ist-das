@@ -149,3 +149,46 @@ $ php -dvld.active=1 -dvld.execute=0 opcodes.php
 ---
 
 ![fit](opcodes.png)
+
+---
+
+# Interpretation
+1. Verwendet OPCodes
+2. Wird in der Zend Engine VM durchgeführt
+3. Der eigentlich Output des Skripts
+
+---
+
+# Zusammenfassend
+1. PHP-Code
+2. Tokens
+3. OPCodes / Bytecode
+4. Ausgabe
+
+---
+
+# APC, APCu, OPCache, Preloading, WTF?
+
+---
+
+# Alternative PHP Cache - APC
+* Bytecode Cache
+* Application Cache - z.B. Queries
+
+---
+
+# APC User Cache - APCu
+* Ersetzt teils APC
+* Übernimmt nur noch den Application Cache
+
+---
+
+# OPCache
+* Ersetzt teils APC
+* Übernimmt den Bytecode Cache
+* Weitere Optimierungen
+
+---
+
+# Preloading
+* Erweitert die Funktion des OPCaches
