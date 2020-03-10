@@ -18,6 +18,14 @@ slidenumbers: true
 
 # Lexing oder Tokenizing
 ## Verwandelt einen Code-String zu eine Token-Stream
+
+
+[.code-highlight: none]
+[.code-highlight: 1-3]
+[.code-highlight: 5]
+[.code-highlight: 7-14]
+[.code-highlight: all]
+
 ```php
 <?php
 
@@ -45,6 +53,18 @@ foreach ($tokens as $token) {
 ```
 
 # Token-Stream
+
+[.code-highlight: none]
+[.code-highlight: 1]
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: 4]
+[.code-highlight: 5]
+[.code-highlight: 6]
+[.code-highlight: 7]
+[.code-highlight: 8]
+[.code-highlight: all]
+
 ```
 Line 1: T_OPEN_TAG ('<?php ')
 Line 1: T_VARIABLE ('$a')
@@ -65,7 +85,7 @@ Line 1: T_CLOSE_TAG ('?>')
 1. Verwendet Token-Stream
 2. Grammatik Check (Validierung)
 3. Bauen des AST (Abstract Syntax Tree)
-   
+
 ```php
 <?php
 
@@ -192,3 +212,8 @@ $ php -dvld.active=1 -dvld.execute=0 opcodes.php
 
 # Preloading
 * Erweitert die Funktion des OPCaches
+* Verbindet die OPCodes der einzelnen Dateien
+
+---
+
+# Einfach mal machen
