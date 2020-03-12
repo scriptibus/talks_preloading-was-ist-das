@@ -1,9 +1,28 @@
-slidenumbers: true
+^
+Vielen Dank, dass ihr da seid
+Schon 2018
+Was ist draus geworden
+Reise durch die Ausführung und Extensions
 
 # Was ist Preloading 
 ### Und wie funktioniert das?
 
 ---
+^
+Ich
+Sensiolabs
+Beispielsweise Migrationsprojekte
+Feature Entwicklung
+
+# Wer ist das?
+* Lucas Nothnagel
+* Software Developer bei Sensiolabs
+
+---
+^
+Nicht Zeile für Zeile
+Lex Pars Compi Inter
+Menschenlesbar
 
 # Wie wird PHP-Code ausgeführt?
 1. Lexing
@@ -14,7 +33,7 @@ slidenumbers: true
 --- 
 ^ 
 - Code String zu Token Stream
-- In späterem Abschnitt verwendet
+- Einfaches Programm
 
 # Lexing oder Tokenizing
 ## Verwandelt einen Code-String zu eine Token-Stream
@@ -54,17 +73,6 @@ foreach ($tokens as $token) {
 
 # Token-Stream
 
-[.code-highlight: none]
-[.code-highlight: 1]
-[.code-highlight: 2]
-[.code-highlight: 3]
-[.code-highlight: 4]
-[.code-highlight: 5]
-[.code-highlight: 6]
-[.code-highlight: 7]
-[.code-highlight: 8]
-[.code-highlight: all]
-
 ```
 Line 1: T_OPEN_TAG ('<?php ')
 Line 1: T_VARIABLE ('$a')
@@ -78,7 +86,9 @@ Line 1: T_CLOSE_TAG ('?>')
 
 ---
 ^
-- Ist das Skript logisch?
+- Ist das Skript logisch? Grammatikcheck
+- Fehlendes Semikolon
+- AST
 - Baumartige Darstellung des Programmcodes
 
 # Parsing
@@ -216,4 +226,66 @@ $ php -dvld.active=1 -dvld.execute=0 opcodes.php
 
 ---
 
-# Einfach mal machen
+# How To Preloading
+* Vor dem Auführen werden OPCodes generiert
+* Ein Custom PHP-Skript
+
+```php
+<?php
+
+$files = /* Preloding Files */;
+
+foreach ($files as $file) {
+    opcache_compile_file($file);
+}
+```
+```ini
+opcache.preload=/path/to/project/preload.php
+```
+
+---
+
+# How To Preloading
+* Vor dem Auführen werden OPCodes generiert
+* Ein Custom PHP-Skript
+
+```php
+<?php
+
+$files = /* Preloding Files */;
+
+foreach ($files as $file) {
+    require_once($file);
+}
+```
+```ini
+opcache.preload=/path/to/project/preload.php
+```
+
+---
+
+# Preloading Hot and Genrated Classes
+* Composer preloading support
+* Whitelisting
+* Blacklisting
+* Framework Funktion Integrationen:
+
+```ini
+opcache.preload=/path/to/project/var/cache/prod/App_KernelProdContainer.preload.php
+```
+
+---
+
+![fit](table.png)
+
+---
+
+# Wo ich abschrieben habe
+* https://stitcher.io/blog/preloading-in-php-74
+* https://github.com/composer/composer/issues/7777
+
+---
+
+# The End
+* Github: scriptibus
+* Twitter: @thenothnagel
