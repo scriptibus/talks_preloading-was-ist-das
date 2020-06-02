@@ -1,18 +1,13 @@
 ^
 Vielen Dank, dass ihr da seid
-Schon 2018
+Schon 2018 im Gespräch
 Was ist draus geworden
-Reise durch die Ausführung und Extensions
+Reise durch die Ausführung von PHP und Extensions
 
 # Was ist Preloading 
 ### Und wie funktioniert das?
 
 ---
-^
-Ich
-Sensiolabs
-Beispielsweise Migrationsprojekte
-Feature Entwicklung
 
 # Wer ist das?
 * Lucas Nothnagel
@@ -22,7 +17,7 @@ Feature Entwicklung
 ^
 Nicht Zeile für Zeile
 Lex Pars Compi Inter
-Menschenlesbar
+Menschenlesbar zu Maschinen Lesbar
 
 # Wie wird PHP-Code ausgeführt?
 1. Lexing
@@ -33,7 +28,6 @@ Menschenlesbar
 --- 
 ^ 
 - Code String zu Token Stream
-- Einfaches Programm
 
 # Lexing oder Tokenizing
 ## Verwandelt einen Code-String zu eine Token-Stream
@@ -87,7 +81,7 @@ Line 1: T_CLOSE_TAG ('?>')
 ---
 ^
 - Ist das Skript logisch? Grammatikcheck
-- Fehlendes Semikolon
+- Bsp. Fehlendes Semikolon
 - AST
 - Baumartige Darstellung des Programmcodes
 
@@ -190,14 +184,26 @@ $ php -dvld.active=1 -dvld.execute=0 opcodes.php
 ---
 
 # Zusammenfassend
-1. PHP-Code
+1. Eingabe → PHP-Code
 2. Tokens
-3. OPCodes / Bytecode
-4. Ausgabe
+3. AST - Abstract Syntax Tree
+4. OPCodes / Bytecode
+5. Zend Engine VM → Ausgabe
 
 ---
 
-# APC, APCu, OPCache, Preloading, WTF?
+# Zusammenfassend
+1. Eingabe → PHP-Code
+2. Tokens
+3. AST - Abstract Syntax Tree
+4. OPCodes / Bytecode
+5. Zend Engine VM → Ausgabe
+
+# 💻 = 🥵
+
+---
+
+# APC, APCu, OPCache, Preloading... 😅?
 
 ---
 
@@ -281,8 +287,12 @@ opcache.preload=/path/to/project/var/cache/prod/App_KernelProdContainer.preload.
 ---
 
 # Wo ich abschrieben habe
-* https://stitcher.io/blog/preloading-in-php-74
 * https://github.com/composer/composer/issues/7777
+* https://stitcher.io/blog/preloading-in-php-74
+* https://www.sitepoint.com/how-php-executes-from-source-code-to-render/
+  
+# Preloading mit Symfony
+* https://symfony.com/blog/new-in-symfony-5-1-configurable-php-preloading
 
 ---
 
