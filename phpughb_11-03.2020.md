@@ -251,25 +251,6 @@ opcache.preload=/path/to/project/preload.php
 
 ---
 
-# How To Preloading
-* Vor dem Auführen werden OPCodes generiert
-* Ein Custom PHP-Skript
-
-```php
-<?php
-
-$files = /* Preloding Files */;
-
-foreach ($files as $file) {
-    require_once($file);
-}
-```
-```ini
-opcache.preload=/path/to/project/preload.php
-```
-
----
-
 # Preloading Hot and Genrated Classes
 * Composer preloading support
 * Whitelisting
